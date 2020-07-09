@@ -1,3 +1,9 @@
+import random
+
+my_range = 1000
+my_size = 500
+
+random_nums = random.sample(range(my_range), my_size)
 # TO-DO: Complete the selection_sort() function below
 def selection_sort(arr):
     # loop through n-1 elements
@@ -7,10 +13,13 @@ def selection_sort(arr):
         # TO-DO: find next smallest element
         # (hint, can do in 3 loc)
         # Your code here
-
+        for j in range(cur_index + 1, len(arr)):
+            if arr[j] < arr[smallest_index]:
+                smallest_index = j
 
         # TO-DO: swap
         # Your code here
+        arr[smallest_index], arr[cur_index] = arr[cur_index], arr[smallest_index]
 
     return arr
 
@@ -18,9 +27,30 @@ def selection_sort(arr):
 # TO-DO:  implement the Bubble Sort function below
 def bubble_sort(arr):
     # Your code here
-
+    #set end index factor to start while loop at second last item
+    end_index_factor = 1
+    # set swap count at 1 so the while loop will be initiaate
+    swap_count = 1
+    #loop through until the end of list has been pushed to first item or until no swaps were made
+    while end_index_factor < len(arr) and swap_count > 0:
+        #reset swap count to zero
+        swap_count = 0
+        #loop through the list up until the "end" which will start at second last item and move back one every time through the while loop
+        for i in range(len(arr) - end_index_factor):
+            #Compare item with item to its right.
+            if arr[i] > arr[i + 1]:
+                #if left item greater than right item, swap items and increment swap count
+                place_holder = arr[i]
+                arr[i] = arr[i + 1]
+                arr[i + 1] = place_holder
+                swap_count += 1
+        #increment end index factor to move the end of list to the left
+        end_index_factor += 1
 
     return arr
+
+
+print(selection_sort(random_nums))
 
 '''
 STRETCH: implement the Counting Sort function below
